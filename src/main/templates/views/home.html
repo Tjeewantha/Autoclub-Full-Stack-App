@@ -2,11 +2,38 @@
 {% load static %}
 
 {% block 'title' %}
-<title>Autoclub . Home</title>
+<title>AntiqueRide . Home</title>
 {% endblock %}
 
 {% block 'body' %}
-<h1>{{ request.user }}</h1>
+<main>
+    <section class="py-5 container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mt-auto">
+                <h1 class="fw-dark">AntiqueRide</h1>
+                <p class="lead text-muted">The best place to buy or sell classic cars and If you own a classic car and
+                    driving it make
+                    you feel out-of-passion, list your car on our website to sell it for best price
+                </p>
+                <a href="{% url 'list' %}" class="btn btn-primary my-0">List Here</a>
+                <div class="col-lg-6 col-md-8 ms-auto">
+                    <!-- List filter -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3">
+                {% for listing in listings %}
+                <div class="col">
+                    {% include "components/listing_card.html" %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
 {% endblock %}
 
 {% block 'footer' %}

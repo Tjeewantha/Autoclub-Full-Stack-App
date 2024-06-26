@@ -1,39 +1,59 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block 'body' %}
-<div class="d-flex h-100 text-center text-white index">
-    <video autoplay muted loop id="myVideo">
-        <source src="{% static 'videos/bg.mp4' %}" type="video/mp4">
-        <!-- Credit: https://www.pexels.com/@kelly-l-1179532 (Pexels.com)-->
-    </video>
-    <div class="d-flex w-100 h-100 p-3 mx-auto flex-column main-content">
-        <header class="mb-auto">
-            <div>
-                <h3 class="float-md-start mb-0">AutoMax</h3>
-                <nav class="nav nav-masthead justify-content-center float-md-end">
-                    {% if request.user.is_authenticated %}
-                    <a class="nav-link active" aria-current="page" href="">Home</a>
-                    {% else %}
-                    <a class="nav-link" href="">Login</a>
-                    {% endif %}
-                </nav>
-            </div>
-        </header>
-        <main class="px-3">
-            <h2>Find a deal near you!</h2>
-            <p class="lead">Looking to buy or sell a used car? We've got you
-                covered. </br> AutoMax is the leading used car marketplace.</p>
-            <p class="lead">
-                <a href="" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Register</a>
-            </p>
-        </main>
-        <footer class="mt-auto text-white-50">
-            <p>Copyright © {% now 'Y' %} <a href="" class="text-white">AutoMax</a> by <a href="https://preneure.com"
-                    class="text-white">Preneure.com</a></p>
-        </footer>
+{% block 'header' %}
+<nav class="navbar fixed-top navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="#"><span class="text-danger">Antique</span>RIDE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                {% if request.user.is_authenticated %}
+                <li class="nav-item active">
+                    <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}" rel="nofollow" target="_blank">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}" target="_blank">Register</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
-</div>
+</nav>
+{% endblock %}
+{% block 'body' %}
+<section id="hero">
+    <div class="conatiner-fluid">
+        <div class="row text-center">
+            <div class="col-12">
+                <h2 class="display-5 mb-4">Let's Find A Near Deal</h2>
+                <p class="lead text-white mb-2">Looking to buy or sell a used car? We've got you
+                    covered. </br> <strong>AntiqueRide</strong> is the leading used car marketplace.
+                </p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <form action="#" class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="'classic volkswagen'"
+                        aria-label="'classic volkswagen'" aria-describedby="button-addon2">
+                    <button class="btn btn-brand" type="button" id="button-addon2">Find</button>
+                </div>
+            </form>
+            <footer class="mt-auto text-center text-white-50 main_footer ">
+                <p>Copyright © {% now 'Y' %} <a href="" class="text-white">AntiqueRide</a> by <a href="https://"
+                        class="text-white">ThisaraJeewantha</a></p>
+            </footer>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
 
